@@ -6,17 +6,17 @@ class Country {
 
     private:
         string   Name;
-        unsigned Days;
+        //unsigned Days;
     
     public:
         Country();
         Country( string name, unsigned days= 0 );
         
         void setName(string name);
-        void setDays(unsigned days);
+        //void setDays(unsigned days);
 
         string getName();
-        unsigned getDays();
+        //unsigned getDays();
 
 
 };

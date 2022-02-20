@@ -1,20 +1,18 @@
 #include <iostream>
-#include <fstream>
 #include <iomanip>
 #include <map>
-
-#include "Country.h"
+#include "CountryMap.h"
 using namespace std;
 
 
 int main() {
 
-    ifstream fileStream;          //file stream buffer
     
+    cout << "Welcome to Schengen Shuffle!";
 
+    CountryMap myMap;
 
-
-
+    myMap.showMap();
 
 
     return 0;

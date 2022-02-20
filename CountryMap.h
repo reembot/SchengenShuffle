@@ -1,5 +1,5 @@
 #include <string>
-#include <map>
+#include <set>
 #include <iostream>
 #include <fstream>
 #include "Country.h"
@@ -9,10 +9,10 @@ using namespace std;
 class CountryMap {
 
     private:
-        map<Country,unsigned> Map;
+        set<Country> Map;
         unsigned MAX_DAYS = 90;
         unsigned usedDays;
-        void     populateMap( map<Country,unsigned>, string fileName );
+        void     populateMap( set<Country>, string fileName );
     
     public:
         CountryMap();
@@ -21,6 +21,7 @@ class CountryMap {
         void     setUsedDays(unsigned newDayCount);
         unsigned getCountryDays(string name);
         void     showMap();
+
 
 };
 
@@ -32,21 +33,22 @@ class CountryMap {
     }
 
 // Populate map with country list
-    void CountryMap::populateMap( map<Country,unsigned>, string fileName ) {
+    void CountryMap::populateMap( set<Country>, string fileName ) {
         
         ifstream fileStream;                       // file stream buffer
-        string   countries;
+        string   countryName;
 
         fileStream.open(fileName);
         if (!fileStream.is_open()) {               // output error message if open fails
             cout << "Could not open " << fileName;
         }
         
-        getline( fileStream, countries );          // read first line of country file
+        getline( fileStream, countryName );          // read first line of country file
         
         while (!fileStream.fail()) {
-            Map.insert( make_pair(countries,0) );  // insert each country into map with 0 days
-            getline( fileStream, countries );      // get next line
+            Country country(countryName, 0);
+            Map.insert( country );  // insert each country into map with 0 days
+            getline( fileStream, countryName );      // get next line
         }
         fileStream.close();                        // close file
     }
@@ -57,8 +59,8 @@ class CountryMap {
         cout << "Current Country List:" << endl;
 
         for (auto it= Map.begin(); it != Map.end(); it++) {
-            Country country = it->first;
-            cout << country.getName() << ": " << it->second << endl;
+            Country country = it;
+            cout << it->getName() << ": " << it->second << endl;
         }
     }
 
@@ -80,7 +82,9 @@ class CountryMap {
 
 // Fetch Country object from map
     unsigned CountryMap::getCountryDays(string name) {
-        return Map[name];
+        auto it = Map.find(name);
+    
+        return it->getDays();
     }
 
 

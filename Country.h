@@ -18,28 +18,27 @@ class Country {
         string getName();
         //unsigned getDays();
 
-
 };
 
-    Country::Country() : Days(0) {
+    Country::Country() {
     }
 
     Country::Country(string name, unsigned days= 0) {
         Name = name;
-        Days = days;
+        //Days = days;
     }
 
     void Country::setName(string name) {
         Name = name;
     }
 
-    void Country::setDays(unsigned days) {
-        Days = days;
-    }
+    // void Country::setDays(unsigned days) {
+    //     Days = days;
+    // }
 
-    unsigned Country::getDays() {
-        return Days;
-    }
+    // unsigned Country::getDays() {
+    //     return Days;
+    // }
 
     string Country::getName() {
         return Name;

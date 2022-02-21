@@ -23,8 +23,13 @@ int main() {
     while ( countryName != "quit" ) {
 
         if (myMap.inSchengen(countryName)) {
-            cout << "How many days?" << endl;
+            cout << "How many days for " << countryName << "?" << endl;
             cin >> days;
+            if ( (myMap.getUsedDays()+days) > myMap.getMaxDays() ) {
+                cout << "Oh no! That's " << (myMap.getUsedDays()+days) - myMap.getMaxDays() << " days(s) over the allotted 90 days." << endl;
+                cout << "You have " << myMap.getMaxDays() - myMap.getUsedDays() << " left to work with." << endl;
+                continue;
+            }
             myMap.setCountryDays(countryName, days);
 
         } else {     
@@ -37,6 +42,7 @@ int main() {
         cin >> countryName;
     }
 
+    cout << endl << "Have a fun adventure! Byeeeeeee" << endl;
 
     return 0;
 }

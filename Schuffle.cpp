@@ -8,7 +8,7 @@ using namespace std;
 int main() {
 
     
-    cout << "Welcome to Schengen Shuffle!";
+    cout << "Welcome to Schengen Shuffle!" << endl;
 
     CountryMap myMap;
 

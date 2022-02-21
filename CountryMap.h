@@ -1,5 +1,5 @@
 #include <string>
-#include <set>
+#include <map>
 #include <iostream>
 #include <fstream>
 #include "Country.h"
@@ -9,17 +9,17 @@ using namespace std;
 class CountryMap {
 
     private:
-        set<Country> Map;
+        map<Country, unsigned> Map;
         unsigned MAX_DAYS = 90;
         unsigned usedDays;
-        void     populateMap( set<Country>, string fileName );
+        void     populateMap( map<Country,unsigned>, string fileName );
     
     public:
         CountryMap();
-        bool     inSchengen(string name);
-        unsigned getUsedDays();
+        bool     inSchengen(string name) const;
+        unsigned getUsedDays() const;
         void     setUsedDays(unsigned newDayCount);
-        unsigned getCountryDays(string name);
+        unsigned getCountryDays(string name) const;
         void     showMap();
 
 
@@ -33,8 +33,9 @@ class CountryMap {
     }
 
 // Populate map with country list
-    void CountryMap::populateMap( set<Country>, string fileName ) {
+    void CountryMap::populateMap( map<Country,unsigned>, string fileName ) {
         
+        cout << "populating map..." << endl;
         ifstream fileStream;                       // file stream buffer
         string   countryName;
 
@@ -46,10 +47,12 @@ class CountryMap {
         getline( fileStream, countryName );          // read first line of country file
         
         while (!fileStream.fail()) {
-            Country country(countryName, 0);
-            Map.insert( country );  // insert each country into map with 0 days
+            //cout << "inserting " << countryName << endl;
+            Country country(countryName);
+            Map.insert( make_pair(country,0) );     // insert each country into map with 0 days
             getline( fileStream, countryName );      // get next line
         }
+        cout << "map size: " << Map.size() << endl;
         fileStream.close();                        // close file
     }
 
@@ -59,14 +62,25 @@ class CountryMap {
         cout << "Current Country List:" << endl;
 
         for (auto it= Map.begin(); it != Map.end(); it++) {
-            Country country = it;
-            cout << it->getName() << ": " << it->second << endl;
+            
+            // cout.flush();
+            if (it->first.getName() == "Switzerland") {
+                it->second = 2;
+            }
+            
+            // cout << it->first.getName();
+            // cout << "name size: " << (it->first.getName()).length() << endl;
+            // cout << "Days: " << it->second << endl;
+
+            cout << it->first.getName();
+            cout.flush();
+            cout << ":" << it->second << endl;
         }
     }
 
 
 // Check if country inquiry is within the Schengen region
-    bool CountryMap::inSchengen(string name) {
+    bool CountryMap::inSchengen(string name) const {
         
         if (Map.count(name) > 0) {
             return true;
@@ -76,19 +90,16 @@ class CountryMap {
     }
 
 // How many days have been used
-    unsigned CountryMap::getUsedDays() {
+    unsigned CountryMap::getUsedDays() const {
         return usedDays;
     }
 
 // Fetch Country object from map
-    unsigned CountryMap::getCountryDays(string name) {
-        auto it = Map.find(name);
-    
-        return it->getDays();
+    unsigned CountryMap::getCountryDays(string name) const {
+        
+        //unsigned days = it->getDays();
+        return Map.find(name)->second;
     }
-
-
-
 
 // Update used day count
     void CountryMap::setUsedDays(unsigned newDayCount) {

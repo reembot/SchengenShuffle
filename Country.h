@@ -6,17 +6,19 @@ class Country {
 
     private:
         string   Name;
-        unsigned Days;
+        //unsigned Days;
     
     public:
         Country();
-        Country( string name, unsigned days );
+        Country( string name );
+        //Country( string name, unsigned days );
+        Country(const Country& copyC);
         
         void setName(string name);
-        void setDays(unsigned days);
+        //void setDays(unsigned days);
 
-        string getName();
-        unsigned getDays();
+        string getName() const;
+        //unsigned getDays() const;
         
         friend bool operator<( const Country& lhs , const Country& rhs );
         friend bool operator>( const Country& lhs , const Country& rhs );
@@ -28,24 +30,34 @@ class Country {
     Country::Country() {
     }
 
-    Country::Country(string name, unsigned days) {
+    Country::Country( string name ) {
         Name = name;
-        Days = days;
+    }
+
+    // Country::Country(string name, unsigned days) {
+    //     Name = name;
+    //     Days = days;
+    // }
+
+// Copy Constructor
+    Country::Country(const Country& copyC) {
+    Name = copyC.Name;
+    //Days = copyC.Days;
     }
 
     void Country::setName(string name) {
         Name = name;
     }
 
-    void Country::setDays(unsigned days) {
-        Days = days;
-    }
+    // void Country::setDays(unsigned days) {
+    //     Days = days;
+    // }
 
-    unsigned Country::getDays() {
-        return Days;
-    }
+    // unsigned Country::getDays() const {
+    //     return Days;
+    // }
 
-    string Country::getName() {
+    string Country::getName() const {
         return Name;
     }
 
@@ -54,7 +66,7 @@ class Country {
     // Overload operators for vertex ordering
     bool operator<( const Country& lhs , const Country& rhs ) {
         
-        return lhs.getDays() < rhs.getDays();
+        return lhs.getName() < rhs.getName();
     }
 
     bool operator>(  const Country& lhs , const Country& rhs ) {
@@ -65,10 +77,10 @@ class Country {
 // Overload operators for vertex identification
     bool operator==( const Country& lhs , const Country& rhs ) {
 
-        return lhs.getDays() == rhs.getDays();
+        return lhs.getName() == rhs.getName();
     }
 
     bool operator!=( const Country& lhs , const Country& rhs ) {
 
-        return !(lhs.getDays() == rhs.getDays());
+        return !(lhs.getName() == rhs.getName());
     }

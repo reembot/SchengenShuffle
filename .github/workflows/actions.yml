@@ -1,0 +1,18 @@
+name: C++ CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: install dependencies
+        run: sudo apt install -y build-essential
+      - name: Compile C++ 2017
+        run: g++ Schuffle.cpp Country.h CountryMap.h -std=c++17 -o schuffle

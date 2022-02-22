@@ -67,7 +67,7 @@ class CountryMap {
             cout << it->first.getName() << ": " << it->second << endl;
         }
 
-        cout << endl << "Total days used: " << getUsedDays() << "/" << MAX_DAYS << endl << endl;
+        cout << endl << "Total days used: " << getUsedDays() << "/" << MAX_DAYS << endl;
     }
 
 

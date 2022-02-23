@@ -12,9 +12,9 @@ int main() {
     CountryMap myMap;
     unsigned MAX_DAYS = myMap.getMaxDays();
     
-    cout << "Welcome to Schengen Shuffle!" << endl;
-    cout << "Here is a list of all the countries within the Schengen Region." << endl;
-    cout << "You have " << MAX_DAYS << " to move between these countries:" << endl;
+    cout << "Welcome to Schengen Shuffle!" << endl << endl;
+    //cout << "Here is a list of all countries within the Schengen Region." << endl << endl;
+    cout << "You have " << MAX_DAYS << " days to move between these countries:" << endl << endl;
 
     myMap.showMap();
 
@@ -43,7 +43,7 @@ int main() {
         cin >> countryName;
     }
 
-    cout << endl << "Have a fun adventure! Byeeeeeee" << endl;
+    cout << endl << "Bon Voyage! Alvederzein! YOLO! Byeeeeeee" << endl << endl;
 
     return 0;
 }

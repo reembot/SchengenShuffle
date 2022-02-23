@@ -1,6 +1,7 @@
 #include <string>
 #include <map>
 #include <iostream>
+#include <iomanip>
 #include <fstream>
 #include "Country.h"
 using namespace std;
@@ -37,7 +38,6 @@ class CountryMap {
 // Populate map with country list
     void CountryMap::populateMap( map<Country,unsigned>, string fileName ) {
         
-        cout << "populating map..." << endl;
         ifstream fileStream;                       // file stream buffer
         string   countryName;
 
@@ -53,7 +53,6 @@ class CountryMap {
             Map.insert( make_pair(country,0) );      // insert each country into map with 0 days
             getline( fileStream, countryName );      // get next line
         }
-        cout << "map size: " << Map.size() << endl;
         fileStream.close();                          // close file
     }
 
@@ -61,13 +60,13 @@ class CountryMap {
 // List Countries and Days in order of days
     void CountryMap::showMap() {
         
-        //cout << "Current Country List:" << endl;
+        cout << "SCHENGEN" << setw(20 - 6) << right << "DAYS" << endl << endl;
 
         for (auto it= Map.begin(); it != Map.end(); it++) {   
-            cout << it->first.getName() << ": " << it->second << endl;
+            cout  << it->first.getName() << ": " << setw(20 - it->first.getName().length() ) << right << it->second << endl;
         }
 
-        cout << endl << "Total days used: " << getUsedDays() << "/" << MAX_DAYS << endl;
+        cout << endl << "TOTAL DAYS USED: " << setw(20-15) << right << getUsedDays() << "/" << MAX_DAYS << endl << endl;
     }
 
 

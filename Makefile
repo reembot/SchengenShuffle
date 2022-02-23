@@ -7,7 +7,7 @@ CXX = g++
 all: $(EXE)
 
 schuffle: schuffle.cc
-	$(CXX) $(CXXFLAGS) Schuffle.cc CountryMap.h Country.h$(LDLIBS) -o schuffle
+	$(CXX) $(CXXFLAGS) Schuffle.cc CountryMap.h Country.h $(LDLIBS) -o schuffle
 
 .PHONY: clean
 clean:

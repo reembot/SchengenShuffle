@@ -25,6 +25,7 @@ class CountryMap {
         void     setCountryDays(string name, unsigned days);
         unsigned getCountryDays(string name) const;
         unsigned getMaxDays() const;
+        unsigned getMapSize() const;
         void     showMap();
 
 
@@ -45,12 +46,13 @@ class CountryMap {
 
         fileStream.open(fileName);
         if (!fileStream.is_open()) {                 // output error message if open fails
-            cout << "Could not open " << fileName;
+            cout << "Could not open " << fileName << endl;
         }
         
         getline( fileStream, countryName );          // read first line of country file
         
         while (!fileStream.fail()) {
+
             Country country(countryName);
             Map.insert( make_pair(country,0) );      // insert each country into map with 0 days
             getline( fileStream, countryName );      // get next line
@@ -62,8 +64,9 @@ class CountryMap {
 // List Countries and Days in order of days
     void CountryMap::showMap() {
 
-
+        // Copy map to local multimap for output sorting by day
         multimap< unsigned,string,greater<unsigned> > sortByDayMap;
+
         for (auto it= Map.begin(); it != Map.end(); it++) {
             sortByDayMap.insert(make_pair(it->second,it->first.getName()));
         }
@@ -117,4 +120,9 @@ class CountryMap {
 // Get MAX_DAYS value
     unsigned CountryMap::getMaxDays() const {
         return MAX_DAYS;
+    }
+
+// Get number of countries in Schengen
+    unsigned CountryMap::getMapSize() const {
+        return Map.size();
     }

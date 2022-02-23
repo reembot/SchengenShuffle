@@ -13,6 +13,8 @@ class CountryMap {
         map<Country, unsigned> Map;
         unsigned MAX_DAYS = 90;
         //unsigned usedDays;
+        //unsigned entryDate;
+        //unsigned exitDate;
         void     populateMap( map<Country,unsigned>, string fileName );
     
     public:
@@ -59,11 +61,17 @@ class CountryMap {
 
 // List Countries and Days in order of days
     void CountryMap::showMap() {
+
+
+        multimap< unsigned,string,greater<unsigned> > sortByDayMap;
+        for (auto it= Map.begin(); it != Map.end(); it++) {
+            sortByDayMap.insert(make_pair(it->second,it->first.getName()));
+        }
         
         cout << "SCHENGEN" << setw(20 - 6) << right << "DAYS" << endl << endl;
 
-        for (auto it= Map.begin(); it != Map.end(); it++) {   
-            cout  << it->first.getName() << ": " << setw(20 - it->first.getName().length() ) << right << it->second << endl;
+        for (auto it= sortByDayMap.begin(); it != sortByDayMap.end(); it++) {   
+            cout  << it->second << ": " << setw(20 - it->second.length() ) << right << it->first << endl;
         }
 
         cout << endl << "TOTAL DAYS USED: " << setw(20-15) << right << getUsedDays() << "/" << MAX_DAYS << endl << endl;

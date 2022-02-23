@@ -6,13 +6,20 @@
 using namespace std;
 
 
-
+// Convert first letter to Uppercase and remaining letters to lower case
 void convertCase(string &countryName) {
-    
+
     countryName[0] = toupper(countryName[0]);
     for (unsigned i= 1; i< countryName.length(); i++) {
+       
+        if (countryName[i] == ' ') {    // for Czech Republic
+            i++;
+            countryName[i] = toupper(countryName[i]);
+            continue;
+        }
         countryName[i] = tolower(countryName[i]);
     }
+    //account for Czech Rep
 }
 
 
@@ -29,10 +36,10 @@ int main() {
     myMap.showMap();
 
     cout << "Which country days would you like to edit? (enter 'quit' to exit)" << endl;
-    cin >> countryName;
+    getline(cin, countryName);
     convertCase(countryName);
 
-    while ( countryName != "quit" ) {
+    while ( countryName != "Quit" ) {
 
         // check if country exists in Schengen map
         if (myMap.inSchengen(countryName)) {
@@ -56,10 +63,11 @@ int main() {
             cout << endl << "Sorry, '" << countryName << "' is not in the Schengen region or is not recognized." << endl << endl;
         }
 
-        cout << "Your current journey:" << endl;
+        cout << endl << "Your current journey:" << endl;
         myMap.showMap();
         cout << "Which country days would you like to edit? (enter 'quit' to exit)" << endl;
-        cin >> countryName;
+        getline(cin, countryName);
+        convertCase(countryName);
     }
 
     // if 'quit' - end of program

@@ -19,16 +19,15 @@ void convertCase(string &countryName) {
         }
         countryName[i] = tolower(countryName[i]);
     }
-    //account for Czech Rep
 }
 
 
 int main() {
 
-    string countryName;
-    unsigned days;
+    string     countryName;
+    unsigned   days;
     CountryMap myMap;
-    unsigned MAX_DAYS = myMap.getMaxDays();
+    unsigned   MAX_DAYS = myMap.getMaxDays();
     
     cout << "Welcome to Schengen Shuffle!" << endl << endl;
     cout << "You have " << MAX_DAYS << " days to move between these " << myMap.getMapSize() << " countries:" << endl << endl;
@@ -45,7 +44,7 @@ int main() {
         if (myMap.inSchengen(countryName)) {
             cout << endl << "How many days would you like to stay in " << countryName << "?" << endl;
             cin >> days;
-            cin.sync();
+            cin.sync();     // flush cin buffer
 
             if (days >= 0 && days < MAX_DAYS+1) {   // check for valid day input
 

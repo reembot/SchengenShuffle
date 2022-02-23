@@ -12,21 +12,21 @@ class CountryMap {
     private:
         map<Country, unsigned> Map;
         unsigned MAX_DAYS = 90;
-        //unsigned usedDays;
+        void     populateMap( map<Country,unsigned>, string fileName );
         //unsigned entryDate;
         //unsigned exitDate;
-        void     populateMap( map<Country,unsigned>, string fileName );
     
     public:
         CountryMap();
+        void     showMap();
         bool     inSchengen(string name) const;
         unsigned getUsedDays() const;
-        void     setUsedDays(unsigned newDayCount);
-        void     setCountryDays(string name, unsigned days);
         unsigned getCountryDays(string name) const;
+        void     setUsedDays(unsigned newDayCount);
         unsigned getMaxDays() const;
         unsigned getMapSize() const;
-        void     showMap();
+        void     setCountryDays(string name, unsigned days);
+        
 
 
 };
@@ -41,7 +41,7 @@ class CountryMap {
 // Populate map with country list
     void CountryMap::populateMap( map<Country,unsigned>, string fileName ) {
         
-        ifstream fileStream;                       // file stream buffer
+        ifstream fileStream;                         // file stream buffer
         string   countryName;
 
         fileStream.open(fileName);
@@ -107,22 +107,20 @@ class CountryMap {
         return Map.find(name)->second;
     }
 
-// // Update used day count
-//     void CountryMap::setUsedDays(unsigned newDayCount) {
-//         usedDays = newDayCount;
-//     }
-
-// Set days in Country
-    void CountryMap::setCountryDays(string name, unsigned days) {
-        Map.find(name)->second = days;
-    }
 
 // Get MAX_DAYS value
     unsigned CountryMap::getMaxDays() const {
         return MAX_DAYS;
     }
 
+
 // Get number of countries in Schengen
     unsigned CountryMap::getMapSize() const {
         return Map.size();
+    }
+
+
+// Set days in Country
+    void CountryMap::setCountryDays(string name, unsigned days) {
+        Map.find(name)->second = days;
     }

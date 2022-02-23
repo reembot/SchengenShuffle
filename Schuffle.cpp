@@ -67,7 +67,7 @@ int main() {
             cout << endl << "Sorry, '" << countryName << "' is not in the Schengen region or is not recognized." << endl << endl;
         }
 
-        cout << endl << "<<<< Your Current Journey >>>>" << endl;
+        cout << endl << "<<<< Your Current Journey >>>>" << endl << endl;
         myMap.showMap();
 
         // if update reaches MAX_DAY threshold

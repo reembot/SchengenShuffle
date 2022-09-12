@@ -15,4 +15,4 @@ jobs:
       - name: install dependencies
         run: sudo apt install -y build-essential
       - name: Compile C++ 2017
-        run: g++ schuffle.cpp Country.cpp Country.h CountryMap.cpp CountryMap.h -std=c++17 -o schuffle
+        run: g++ Schuffle.cpp Country.cpp Country.h CountryMap.cpp CountryMap.h -std=c++17 -o schuffle

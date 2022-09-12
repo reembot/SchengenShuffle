@@ -44,7 +44,12 @@ int main() {
         if (myMap.inSchengen(countryName)) {
             cout << endl << "How many days would you like to stay in " << countryName << "?" << endl;
             cin >> days;
-            cin.sync();     // flush cin buffer
+            if ( cin.fail() ) {
+                cin.clear();
+                cout << "Please enter a number between 0 and 90" << endl;
+                continue;
+            }
+            // cin.sync();     // flush cin buffer
 
             if (days >= 0 && days < MAX_DAYS+1) {   // check for valid day input
 
@@ -80,7 +85,7 @@ int main() {
     }
 
     // if 'quit' - end of program
-    cout << endl << "Bon Voyage! Alvederzein! YOLO! Byeeeeeeeeeeeeeeeeeee" << endl << endl;
+    cout << endl << "Bon Voyage! Alvederzein! Byeeeeeeeeeeeeeeeeeee" << endl << endl;
 
     return 0;
 }

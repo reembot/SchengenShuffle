@@ -26,15 +26,11 @@ class CountryMap {
         unsigned getMaxDays() const;
         unsigned getMapSize() const;
         void     setCountryDays(string name, unsigned days);
-        
-
-
 };
 
 
 // Default Constructor
     CountryMap::CountryMap() {
-        //usedDays = 0;
         populateMap(Map, "SchengenCountries.txt");
     }
 

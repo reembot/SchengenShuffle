@@ -28,14 +28,15 @@ int main() {
     unsigned   MAX_DAYS = myMap.getMaxDays();
     
     cout << "Welcome to Schengen Shuffle!" << endl << endl;
-    cout << "You have " << MAX_DAYS << " days to move between these " << myMap.getMapSize() << " countries:" << endl << endl;
+    cout << "You have " << MAX_DAYS << " days to move between these " << myMap.getMapSize() << " countries:" << endl;
     myMap.showMap();
 
     int action= 0;
     string countryName;
 
     while ( action != 3 ) {
-
+        
+        cout << "Please make a selection:" << endl;
         cout << "1) View My Current Journey" << endl;
         cout << "2) Add or Remove Days" << endl;
         cout << "3) Quit" << endl;
@@ -49,7 +50,9 @@ int main() {
 
             case 2:
                 cout << "Which country's days would you like to edit?" << endl;
-                getline(cin, countryName);
+                cin.clear();
+                cin >> countryName;
+                //getline(cin, countryName);
                 convertCase(countryName);
 
                 // check if country exists in Schengen map
@@ -71,7 +74,7 @@ int main() {
 
                     } else {    // if days entered outside of range
                         cout << "Please enter a number between 0 and 90" << endl;
-                        continue;
+                        //continue;
                     }
 
                 } else {    // input is not recognized
@@ -82,6 +85,9 @@ int main() {
             case 3:
                 cout << endl << "Bon Voyage! Alvederzein! Byeeeeeeeeeeeeeeeeeee" << endl << endl;
                 exit(0);
+
+            default:
+                cout << "Please make a selection between 1 and 3." << endl;
         }
     }
     return 0;

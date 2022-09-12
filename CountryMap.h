@@ -19,7 +19,9 @@ class CountryMap {
     
     public:
         CountryMap();
-        //Ctor & Destructor
+        CountryMap( const CountryMap& copy);
+        ~CountryMap();
+        
         void     showMap() const;
         bool     inSchengen(string name) const;
         unsigned getUsedDays() const;

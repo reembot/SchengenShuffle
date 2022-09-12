@@ -24,6 +24,13 @@
         fileStream.close();
     }
 
+// Copy Constructor
+    CountryMap::CountryMap( const CountryMap& copy) : Map(copy.Map), MAX_DAYS(copy.MAX_DAYS) {
+    }
+
+// Destructor
+    CountryMap::~CountryMap() {
+    }
 
 // List Countries and Days in order of days
     void CountryMap::showMap() const {
@@ -42,14 +49,11 @@
 // Check if country inquiry is within the Schengen region
     bool CountryMap::inSchengen(string name) const {
         
-        for ( auto it= Map.begin(); it != Map.end(); it++ ) {
-            
-            // Compare input name to each Country name
-            if ( it->second.getName() == name ) {
-                continue;
-            }
-        }
-        return false;
+        if ( Map.find(name) != Map.end() ) {
+            return true;
+        } else {
+            return false;
+        }     
     }
 
 // How many days have been used
@@ -70,7 +74,6 @@
         return requestedCountry.getDays();
     }
 
-
 // Get MAX_DAYS value
     unsigned CountryMap::getMaxDays() const {
         return MAX_DAYS;
@@ -82,6 +85,7 @@
         return Map.size();
     }
 
+// Edit days per country
     void CountryMap::setCountryDays(string name, unsigned days) {
 
            

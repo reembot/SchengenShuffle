@@ -23,13 +23,13 @@ class CountryMap {
         ~CountryMap();
         
         void     showMap() const;
-        bool     inSchengen(string name) const;
+        bool     inSchengen(const string& name) const;
         unsigned getUsedDays() const;
-        unsigned getCountryDays(string name) const;
+        unsigned getCountryDays(const string& name) const;
         void     setUsedDays(unsigned newDayCount);
         unsigned getMaxDays() const;
         unsigned getMapSize() const;
-        void     setCountryDays(string name, unsigned days);
+        void     setCountryDays(const string& name, unsigned days);
 };
 
 #endif

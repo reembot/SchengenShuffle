@@ -51,7 +51,7 @@
 
 
 // Check if country inquiry is within the Schengen region
-    bool CountryMap::inSchengen(string name) const {
+    bool CountryMap::inSchengen(const string& name) const {
         
         if ( Map.find(name) != Map.end() ) {
             return true;
@@ -72,7 +72,7 @@
     }
 
 // Fetch Country Days
-    unsigned CountryMap::getCountryDays(string name) const {
+    unsigned CountryMap::getCountryDays(const string& name) const {
         
         auto requestedCountry = Map.find(name)->second;
         return requestedCountry.getDays();
@@ -90,7 +90,7 @@
     }
 
 // Edit days per country
-    void CountryMap::setCountryDays(string name, unsigned days) {
+    void CountryMap::setCountryDays(const string& name, unsigned days) {
 
            
         // if days entered exceeds the MAX_DAYS threshold

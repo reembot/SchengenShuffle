@@ -1,6 +1,7 @@
 #ifndef COUNTRY_H
 #define COUNTRY_H
 #include <string>
+#include <iostream>
 using namespace std;
 
 
@@ -11,7 +12,7 @@ class Country {
         unsigned days;
     
     public:
-        Country( const string name, unsigned days );
+        Country( string name, unsigned days );
         Country(const Country& copy);
         ~Country();
 
@@ -20,10 +21,10 @@ class Country {
 
         void setDays(unsigned days);
         
-        friend bool operator<( const Country& lhs , const Country& rhs );
-        friend bool operator>( const Country& lhs , const Country& rhs );
-        friend bool operator==( const Country& lhs , const Country& rhs );
-        friend bool operator!=( const Country& lhs , const Country& rhs );
+        // friend bool operator<( const Country& lhs , const Country& rhs );
+        // friend bool operator>( const Country& lhs , const Country& rhs );
+        // friend bool operator==( const Country& lhs , const Country& rhs );
+        // friend bool operator!=( const Country& lhs , const Country& rhs );
 
 };
 

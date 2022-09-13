@@ -7,6 +7,7 @@
 
 // Copy Constructor
     Country::Country(const Country& copy) : name(copy.name), days(copy.days) {
+        std::cout << "copying " << copy.name << endl;
     }
 
 // Destructor
@@ -25,28 +26,31 @@
 
 // Set Days in Country
     void Country::setDays(unsigned days) {
-        days = days;
+        this->days = days;
     }
 
 
-// Overload operators for vertex ordering
-    bool operator<( const Country& lhs , const Country& rhs ) {
+// // Overload operators for vertex ordering
+//     bool operator<( const Country& lhs , const Country& rhs ) {
+
+//         if (lhs.getDays() != rhs.getDays())
+//             return lhs.getDays() < rhs.getDays();
+//         else
+//             return lhs.getName() < rhs.getName();
+//     }
+
+//     bool operator>(  const Country& lhs , const Country& rhs ) {
         
-        return lhs.getName() < rhs.getName();
-    }
+//         return rhs < lhs;   //return counterpart overload
+//     }
 
-    bool operator>(  const Country& lhs , const Country& rhs ) {
-        
-        return rhs < lhs;   //return counterpart overload
-    }
+// // Overload operators for vertex identification
+//     bool operator==( const Country& lhs , const Country& rhs ) {
 
-// Overload operators for vertex identification
-    bool operator==( const Country& lhs , const Country& rhs ) {
+//         return lhs.getName() == rhs.getName();
+//     }
 
-        return lhs.getName() == rhs.getName();
-    }
+//     bool operator!=( const Country& lhs , const Country& rhs ) {
 
-    bool operator!=( const Country& lhs , const Country& rhs ) {
-
-        return !(lhs.getName() == rhs.getName());
-    }
+//         return !(lhs.getName() == rhs.getName());
+//     }

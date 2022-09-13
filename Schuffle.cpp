@@ -33,9 +33,7 @@ int main() {
                 break;
 
             case 2:
-                cout << "Which country's days would you like to edit?" << endl;
-                cin.clear();
-                //cin >> countryName;
+                cout << "\nWhich country's days would you like to edit?" << endl;
                 cin.ignore();
                 getline(cin, countryName);
 
@@ -47,14 +45,9 @@ int main() {
                 if ( myMap.inSchengen(countryName) ) {
                     
                     unsigned days;
-                    cout << endl << "How many days would you like to stay in " << countryName << "?" << endl;
+                    cout << "\nHow many days would you like to stay in " << countryName << "?" << endl;
                     cin >> days;
 
-                    if ( cin.fail() ) {
-                        cin.clear();
-                        cout << "Please enter a number between 0 and 90" << endl;
-                        continue;
-                    }
                     // check for valid day input
                     if ( days >= 0 && days <= MAX_DAYS ) {
                         
@@ -62,7 +55,6 @@ int main() {
 
                     } else {    // if days entered outside of range
                         cout << "Please enter a number between 0 and 90" << endl;
-                        //continue;
                     }
 
                 } else {    // input is not recognized

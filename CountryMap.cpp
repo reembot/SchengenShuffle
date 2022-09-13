@@ -16,10 +16,14 @@
         string   countryName;      
         while ( !getline(fileStream, countryName).eof() ) {
 
-            //cout << "reading in " << countryName << endl;
             Country newCountry( countryName, 0 );
+            
+            // conver to lowercase for Map key
+            for ( int i= 0; i< countryName.length(); i++ ) {
+                countryName[i] = tolower(countryName[i]);
+            }
+
             Map.insert( make_pair(countryName, newCountry) );      // insert each country into map with 0 days
-            getline( fileStream, countryName );          // get next line
         }
         fileStream.close();
     }
@@ -32,17 +36,17 @@
     CountryMap::~CountryMap() {
     }
 
-// List Countries and Days in order of days
+// List Countries Alphabetically
     void CountryMap::showMap() const {
 
         cout << endl << "<<<< Your Current Journey >>>>" << endl << endl;
-        cout << "SCHENGEN" << setw(20 - 6) << right << "DAYS" << endl << endl;
+        cout << left << setw(20) << "SCHENGEN" << "DAYS" << endl << endl;
 
         for ( auto it= Map.begin(); it != Map.end(); it++ ) {   
-            cout  << it->first << ": " << setw(20) << right << it->second.getDays() << endl;
+            cout << left << setw(20) << it->second.getName() << it->second.getDays() << endl;
         }
 
-        cout << endl << "TOTAL DAYS USED: " << setw(20-15) << right << getUsedDays() << "/" << MAX_DAYS << endl << endl;
+        cout << endl << left << setw(20) << "TOTAL DAYS USED: " << getUsedDays() << "/" << MAX_DAYS << endl << endl;
     }
 
 
@@ -97,8 +101,8 @@
             cout << "You only have " << MAX_DAYS - getUsedDays() << " left to work with." << endl;
         
         } else {
-            auto requestedCountry = Map.find(name)->second;
-            requestedCountry.setDays(days);
+            Map.find(name)->second.setDays( days );
+            //Map[name].setDays( days );    // does not work?
         }
 
         // if update reaches MAX_DAY threshold

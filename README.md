@@ -8,4 +8,4 @@ This simple calculator can help you plan how many days you'd like to spend in ea
 
 Prost!
 
-[![C++ CI](https://github.com/reembot/SchengenShuffle/actions/workflows/actions.yml/badge.svg)](https://github.com/reembot/SchengenShuffle/actions/workflows/actions.yml)
+[![C++ CI](https://github.com/reembot/SchengenShuffle/actions/workflows/actions.yml/badge.svg?branch=main)](https://github.com/reembot/SchengenShuffle/actions/workflows/actions.yml)
